@@ -145,6 +145,7 @@ export const SkillDataProvider = ({
             duration: 2,
             repeat: Infinity,
             ease: "easeInOut",
+
           }}
           className="absolute inset-0 rounded-2xl border-2 border-cyan-400/20 pointer-events-none"
         />
@@ -179,4 +180,5 @@ export const SkillDataProvider = ({
     </motion.div>
   );
 };
+
 

@@ -205,7 +205,7 @@ export const Skills = () => {
           whileTap={{ scale: 0.95 }}
           className="px-8 py-4 bg-gradient-to-r from-cyan-600 to-purple-600 text-white font-bold rounded-xl shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300"
         >
-          Let's Build Together
+          Let&apos;s Build Together
         </motion.button>
       </motion.div>
     </section>

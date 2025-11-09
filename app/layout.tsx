@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import dynamic from "next/dynamic";
 import { Inter } from "next/font/google";
 import type { PropsWithChildren } from "react";
 
@@ -11,6 +12,15 @@ import { cn } from "@/lib/utils";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
+
+// Dynamically import Preloader with no SSR to avoid hydration issues
+const Preloader = dynamic(
+  () => import("@/components/preloader"),
+  {
+    ssr: false,
+    loading: () => null,
+  }
+);
 
 export const viewport: Viewport = {
   themeColor: "#030014",
@@ -27,10 +37,12 @@ export default function RootLayout({ children }: PropsWithChildren) {
           inter.className
         )}
       >
-        <StarsCanvas />
-        <Navbar />
-        {children}
-        <Footer />
+        <Preloader>
+          <StarsCanvas />
+          <Navbar />
+          {children}
+          <Footer />
+        </Preloader>
       </body>
     </html>
   );

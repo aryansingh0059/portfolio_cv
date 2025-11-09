@@ -7,7 +7,7 @@ import {
   slideInFromRight,
   slideInFromTop,
 } from "@/lib/motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
 import Image from "next/image";
 import { SparklesIcon } from "@heroicons/react/24/solid";
@@ -18,7 +18,7 @@ export const HeroContent = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   
-  const roles = ["Developer", "Freelancer", "Debugger", "Problem Solver", "Coder"];
+  const roles = useMemo(() => ["Developer", "Freelancer", "Debugger", "Problem Solver", "Coder"], []);
   const [roleIndex, setRoleIndex] = useState(0);
   const currentRole = roles[roleIndex];
 
@@ -74,13 +74,13 @@ export const HeroContent = () => {
           className="flex flex-col gap-6 mt-6 text-6xl text-bold text-white max-w-[600px] w-auto h-auto"
         >
           <span>
-            Hii, I'm {" "}
+            Hii, I&apos;m {" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
               Aryan
             </span>{"  "}
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
-              I'am {displayText}
+              I&apos;m {displayText}
             </span>
             <span className="animate-pulse">|</span>
           </span>

@@ -156,7 +156,7 @@ export const Projects = () => {
           animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 1.7 }}
         >
-          Like what you see? Let's build something amazing together!
+          Like what you see? Let&apos;s build something amazing together!
         </motion.p>
         
         <motion.button

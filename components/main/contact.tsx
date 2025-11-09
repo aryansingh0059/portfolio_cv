@@ -110,7 +110,7 @@ export const Contact = () => {
               <PaperAirplaneIcon className="w-6 h-6 text-cyan-400" />
             </motion.div>
             <span className="text-white font-semibold text-lg bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-              Let's Build Something Great
+              Let&apos;s Build Something Great
             </span>
             <motion.div
               animate={{ rotate: [0, -10, 10, 0] }}
