@@ -1,10 +1,11 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
 import { opacity, slideUp } from "./anim";
-import { usePreloader } from "./index";
+import { useEffect, useState } from "react";
+
+import { motion } from "framer-motion";
 import styles from "./style.module.css";
+import { usePreloader } from "./index";
 
 const steps = [
   "10%",
@@ -106,4 +107,3 @@ export default function Loader() {
     </motion.div>
   );
 }
-

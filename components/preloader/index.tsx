@@ -1,8 +1,8 @@
 "use client";
 
-import { AnimatePresence } from "framer-motion";
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 
+import { AnimatePresence } from "framer-motion";
 import Loader from "./loader";
 
 type PreloaderContextType = {
@@ -140,4 +140,3 @@ function Preloader({
 }
 
 export default Preloader;
-

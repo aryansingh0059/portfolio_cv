@@ -155,7 +155,7 @@ export const Contact = () => {
                 {
                   icon: EnvelopeIcon,
                   title: "Email",
-                  value: "hello@aryan.dev",
+                  value: "contact.aryan0101@gmail.com",
                   subtitle: "Fastest response",
                   color: "cyan",
                   href: "mailto:hello@aryan.dev",
@@ -163,15 +163,14 @@ export const Contact = () => {
                 {
                   icon: PhoneIcon,
                   title: "Phone",
-                  value: "+1 (555) 123-4567",
+                  value: "+91 7667682319",
                   subtitle: "Mon-Fri, 9AM-6PM",
                   color: "purple",
-                  href: "tel:+15551234567",
                 },
                 {
                   icon: MapPinIcon,
                   title: "Location",
-                  value: "New York, NY",
+                  value: "Darbhanga, Bihar, India",
                   subtitle: "Available worldwide",
                   color: "cyan",
                   href: "#",
@@ -179,8 +178,8 @@ export const Contact = () => {
                 {
                   icon: ClockIcon,
                   title: "Response Time",
-                  value: "< 24 hours",
-                  subtitle: "Usually within 2 hours",
+                  value: `< 24 Hours`,
+                  subtitle: "Usually within 3 hours",
                   color: "purple",
                   href: "#",
                 },
