@@ -4,6 +4,24 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --bg-base: #030014;
+  --bg-surface: rgba(15, 23, 42, 0.65);
+  --line-soft: rgba(148, 163, 184, 0.18);
+  --accent-cyan: #22d3ee;
+  --accent-violet: #a855f7;
+}
+
+body {
+  background: var(--bg-base);
+  color: #e2e8f0;
+}
+
+::selection {
+  background: rgba(34, 211, 238, 0.35);
+  color: #e0f2fe;
+}
+
 .cursive {
   font-family: "Cedarville Cursive", cursive;
 }
@@ -65,4 +83,23 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(34, 211, 238, 0.45) rgba(15, 23, 42, 0.3);
+}
+
+*::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--accent-cyan), var(--accent-violet));
+  border-radius: 9999px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.2);
 }

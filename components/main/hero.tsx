@@ -7,115 +7,52 @@ import { motion } from "framer-motion";
 
 export const Hero = () => {
   const [isMobile, setIsMobile] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     setIsMobile(window.innerWidth < 768);
-    
-    const handleMouseMove = (e: MouseEvent) => {
-      if (window.innerWidth >= 768) {
-        setMousePosition({
-          x: (e.clientX / window.innerWidth - 0.5) * 10,
-          y: (e.clientY / window.innerHeight - 0.5) * 10
-        });
-      }
-    };
 
     const handleResize = () => setIsMobile(window.innerWidth < 768);
 
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     window.addEventListener('resize', handleResize);
     
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);
     };
   }, []);
 
   const particleCount = useMemo(() => isMobile ? 20 : 80, [isMobile]);
+  const stars = useMemo(
+    () =>
+      Array.from({ length: particleCount }, (_, i) => {
+        const seed = (i * 9301 + 49297) % 233280;
+        const nextSeed = (seed * 9301 + 49297) % 233280;
+        const thirdSeed = (nextSeed * 9301 + 49297) % 233280;
+        const fourthSeed = (thirdSeed * 9301 + 49297) % 233280;
 
-  // Enhanced animation variants with 3D
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
-  };
-
-  const nebulaVariants = {
-    hidden: { scale: 0.8, opacity: 0, rotateX: -45 },
-    visible: {
-      scale: 1,
-      opacity: 1,
-      rotateX: 0,
-      transition: {
-        duration: 2.5,
-        ease: "easeOut"
-      }
-    }
-  };
-
-  const starVariants = {
-    hidden: { scale: 0, opacity: 0, z: -100 },
-    visible: (i: number) => ({
-      scale: 1,
-      opacity: [0, 1, 0.7],
-      z: 0,
-      transition: {
-        delay: i * 0.015,
-        duration: 1.8,
-        ease: "easeOut",
-        opacity: {
-          duration: 4,
-          times: [0, 0.5, 1]
-        }
-      }
-    })
-  };
-
-  const heroContentVariants = {
-    hidden: { y: 60, opacity: 0, rotateX: 10 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      rotateX: 0,
-      transition: {
-        delay: 0.6,
-        duration: 1.4,
-        ease: "easeOut"
-      }
-    }
-  };
-
-  const scrollIndicatorVariants = {
-    hidden: { y: 30, opacity: 0, scale: 0.8 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      scale: 1,
-      transition: {
-        delay: 1.8,
-        duration: 1,
-        ease: "easeOut"
-      }
-    }
-  };
+        return {
+          id: i,
+          size: 0.4 + (seed / 233280) * 1,
+          opacity: 0.25 + (nextSeed / 233280) * 0.55,
+          left: `${(thirdSeed / 233280) * 100}%`,
+          top: `${(fourthSeed / 233280) * 100}%`,
+          duration: 3 + ((seed + thirdSeed) % 1200) / 300,
+          delay: ((nextSeed + fourthSeed) % 1000) / 200,
+        };
+      }),
+    [particleCount]
+  );
 
   return (
     <motion.div
+      id="about-me"
       className="relative flex flex-col h-screen w-full overflow-hidden"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      {/* Simplified Background - reduce complexity on mobile */}
       <div className="absolute inset-0 -z-10">
         <motion.div
-          className="absolute top-1/4 left-1/4 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-gradient-to-br from-purple-600/15 to-pink-500/10 rounded-full blur-3xl"
+          className="absolute top-[18%] left-[12%] w-[300px] md:w-[520px] h-[300px] md:h-[520px] bg-gradient-to-br from-purple-600/20 to-pink-500/10 rounded-full blur-3xl"
           animate={!isMobile ? {
             scale: [1, 1.1, 1],
             opacity: [0.2, 0.3, 0.2],
@@ -128,7 +65,7 @@ export const Hero = () => {
         />
         
         <motion.div
-          className="absolute bottom-1/3 right-1/4 w-[250px] md:w-[400px] h-[250px] md:h-[400px] bg-gradient-to-tr from-blue-600/10 to-cyan-500/15 rounded-full blur-3xl"
+          className="absolute bottom-[10%] right-[12%] w-[250px] md:w-[440px] h-[250px] md:h-[440px] bg-gradient-to-tr from-blue-600/10 to-cyan-500/20 rounded-full blur-3xl"
           animate={!isMobile ? {
             scale: [1.1, 1, 1.1],
             opacity: [0.1, 0.2, 0.1],
@@ -140,36 +77,33 @@ export const Hero = () => {
             ease: "easeInOut"
           }}
         />
+
+        <div className="absolute inset-0 bg-[linear-gradient(transparent_95%,rgba(34,211,238,0.08)_96%),linear-gradient(90deg,transparent_95%,rgba(34,211,238,0.08)_96%)] bg-[size:56px_56px] opacity-20" />
       </div>
 
       {/* Optimized Starfield */}
       <div className="absolute inset-0">
-        {[...Array(particleCount)].map((_, i) => {
-          const size = 0.3 + Math.random() * 1;
-          const opacity = 0.3 + Math.random() * 0.5;
-          
-          return (
-            <motion.div
-              key={i}
-              className="absolute bg-white rounded-full will-change-transform"
-              style={{
-                width: `${size}px`,
-                height: `${size}px`,
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-              animate={{
-                opacity: [opacity * 0.5, opacity, opacity * 0.5],
-              }}
-              transition={{
-                duration: 3 + Math.random() * 3,
-                repeat: Infinity,
-                delay: Math.random() * 5,
-                ease: "easeInOut"
-              }}
-            />
-          );
-        })}
+        {stars.map((star) => (
+          <motion.div
+            key={star.id}
+            className="absolute bg-white rounded-full will-change-transform"
+            style={{
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              left: star.left,
+              top: star.top,
+            }}
+            animate={{
+              opacity: [star.opacity * 0.5, star.opacity, star.opacity * 0.5],
+            }}
+            transition={{
+              duration: star.duration,
+              repeat: Infinity,
+              delay: star.delay,
+              ease: "easeInOut"
+            }}
+          />
+        ))}
       </div>
 
       {/* Hero Content */}
@@ -177,18 +111,17 @@ export const Hero = () => {
         <HeroContent />
       </div>
 
-      {/* Simplified Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.5 }}
-        className="absolute bottom-6 md:bottom-10 left-1/2 transform -translate-x-1/2 z-30"
+        className="absolute bottom-5 md:bottom-8 left-1/2 transform -translate-x-1/2 z-30"
       >
         <div className="flex flex-col items-center space-y-2 md:space-y-4">
-          <span className="text-white/70 text-xs md:text-sm font-light tracking-widest uppercase bg-black/20 px-4 md:px-6 py-2 md:py-3 rounded-full backdrop-blur-xl border border-white/10">
-            Scroll Down
-          </span>
-          <div className="w-6 md:w-10 h-10 md:h-16 border-2 border-white/30 rounded-full flex justify-center backdrop-blur-xl bg-black/10">
+          <a href="#skills" className="text-white/70 text-xs md:text-sm font-light tracking-widest uppercase bg-black/20 px-4 md:px-6 py-2 md:py-3 rounded-full backdrop-blur-xl border border-white/10 hover:border-cyan-400/40 transition-colors">
+            Discover More
+          </a>
+          <div className="w-6 md:w-10 h-10 md:h-16 border-2 border-white/25 rounded-full flex justify-center backdrop-blur-xl bg-black/10">
             <motion.div
               animate={{
                 y: [0, 12, 0],

@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
-import { LINKS, NAV_LINKS, SOCIALS } from "@/constants";
+import { NAV_LINKS, SOCIALS } from "@/constants";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import Image from "next/image";
@@ -11,7 +11,7 @@ export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [activeLink, setActiveLink] = useState("home");
+  const [activeLink, setActiveLink] = useState("#about-me");
   const [isMobile, setIsMobile] = useState(false);
   
   const navbarRef = useRef(null);

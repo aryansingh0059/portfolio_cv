@@ -4,7 +4,6 @@
 import {
   BACKEND_SKILL,
   FRONTEND_SKILL,
-  FULLSTACK_SKILL,
   OTHER_SKILL,
 } from "@/constants";
 
@@ -41,6 +40,18 @@ export const Skills = () => {
     },
   };
 
+  const particles = Array.from({ length: 20 }, (_, i) => {
+    const seed = (i * 7919 + 1237) % 104729;
+    const nextSeed = (seed * 7919 + 1237) % 104729;
+    return {
+      id: i,
+      left: `${(seed / 104729) * 100}%`,
+      top: `${(nextSeed / 104729) * 100}%`,
+      duration: 3 + (seed % 2000) / 1000,
+      delay: (nextSeed % 1500) / 1000,
+    };
+  });
+
   return (
     <section
       id="skills"
@@ -55,22 +66,22 @@ export const Skills = () => {
 
       {/* Floating Particles */}
       <div className="absolute inset-0">
-        {[...Array(20)].map((_, i) => (
+        {particles.map((particle) => (
           <motion.div
-            key={i}
+            key={particle.id}
             className="absolute w-1 h-1 bg-cyan-400/30 rounded-full"
             animate={{
               y: [0, -30, 0],
               opacity: [0.3, 1, 0.3],
             }}
             transition={{
-              duration: 3 + Math.random() * 2,
+              duration: particle.duration,
               repeat: Infinity,
-              delay: Math.random() * 2,
+              delay: particle.delay,
             }}
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              left: particle.left,
+              top: particle.top,
             }}
           />
         ))}
@@ -84,33 +95,24 @@ export const Skills = () => {
         variants={containerVariants}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
-        className="relative z-10 w-full max-w-7xl mx-auto"
+        className="relative z-10 w-full max-w-7xl mx-auto px-4"
       >
-        {/* Main Skills */}
-        <motion.div variants={sectionVariants} className="mb-12">
-          <h3 className="text-2xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400 mb-8">
-            Core Technologies
+        {/* Main Skills Header */}
+        <motion.div variants={sectionVariants} className="mb-16">
+          <h3 className="text-3xl md:text-4xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400 mb-4">
+            Tech Stack
           </h3>
-          {/* <div className="flex flex-row justify-center flex-wrap gap-8 items-center">
-            {SKILL_DATA.map((skill, i) => (
-              <SkillDataProvider
-                key={skill.skill_name}
-                src={skill.image}
-                name={skill.skill_name}
-                width={skill.width}
-                height={skill.height}
-                index={i}
-              />
-            ))}
-          </div> */}
+          <p className="text-center text-gray-400 text-lg">
+            Specialized technologies & frameworks I work with
+          </p>
         </motion.div>
 
         {/* Frontend Skills */}
-        <motion.div variants={sectionVariants} className="mb-12">
-          <h3 className="text-2xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-400 mb-8">
-            Frontend Development
+        <motion.div variants={sectionVariants} className="mb-16">
+          <h3 className="text-2xl md:text-3xl font-semibold text-center text-cyan-300 mb-10 tracking-wide uppercase text-sm">
+            ⚡ Frontend Development
           </h3>
-          <div className="flex flex-row justify-center flex-wrap gap-8 items-center">
+          <div className="flex flex-row justify-center flex-wrap gap-6 md:gap-8 items-center">
             {FRONTEND_SKILL.map((skill, i) => (
               <SkillDataProvider
                 key={skill.skill_name}
@@ -125,11 +127,11 @@ export const Skills = () => {
         </motion.div>
 
         {/* Backend Skills */}
-        <motion.div variants={sectionVariants} className="mb-12">
-          <h3 className="text-2xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-400 mb-8">
-            Backend Development
+        <motion.div variants={sectionVariants} className="mb-16">
+          <h3 className="text-2xl md:text-3xl font-semibold text-center text-purple-300 mb-10 tracking-wide uppercase text-sm">
+            🔧 Backend Development
           </h3>
-          <div className="flex flex-row justify-center flex-wrap gap-8 items-center">
+          <div className="flex flex-row justify-center flex-wrap gap-6 md:gap-8 items-center">
             {BACKEND_SKILL.map((skill, i) => (
               <SkillDataProvider
                 key={skill.skill_name}
@@ -143,14 +145,12 @@ export const Skills = () => {
           </div>
         </motion.div>
 
-       
-
-        {/* Other Skills */}
-        <motion.div variants={sectionVariants}>
-          <h3 className="text-2xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-400 mb-8">
-            Tools & Others
+        {/* Tools & DevOps */}
+        <motion.div variants={sectionVariants} className="mb-16">
+          <h3 className="text-2xl md:text-3xl font-semibold text-center text-amber-300 mb-10 tracking-wide uppercase text-sm">
+            🛠️ Tools & DevOps
           </h3>
-          <div className="flex flex-row justify-center flex-wrap gap-8 items-center">
+          <div className="flex flex-row justify-center flex-wrap gap-6 md:gap-8 items-center">
             {OTHER_SKILL.map((skill, i) => (
               <SkillDataProvider
                 key={skill.skill_name}
@@ -170,7 +170,7 @@ export const Skills = () => {
         <div className="w-full h-full opacity-20 flex items-center justify-center">
           <video
             className="w-full h-full object-cover"
-            preload="false"
+            preload="none"
             playsInline
             loop
             muted
@@ -185,27 +185,27 @@ export const Skills = () => {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ delay: 1.5 }}
-        className="text-center mt-16 relative z-10"
+        transition={{ delay: 1.2 }}
+        className="text-center mt-20 relative z-10"
       >
         <motion.p
-          className="text-gray-300 text-lg mb-6"
+          className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto leading-relaxed"
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
-          transition={{ delay: 1.7 }}
+          transition={{ delay: 1.4 }}
         >
-          Ready to bring your ideas to life with these technologies?
+          I continuously expand my expertise and stay updated with the latest industry trends and technologies.
         </motion.p>
         
         <motion.button
           whileHover={{ 
             scale: 1.05,
-            boxShadow: "0 20px 40px rgba(6, 182, 212, 0.3)"
+            boxShadow: "0 20px 50px rgba(6, 182, 212, 0.4)"
           }}
           whileTap={{ scale: 0.95 }}
-          className="px-8 py-4 bg-gradient-to-r from-cyan-600 to-purple-600 text-white font-bold rounded-xl shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300"
+          className="px-10 py-4 bg-gradient-to-r from-cyan-600 to-purple-600 text-white font-semibold rounded-xl shadow-2xl hover:shadow-cyan-500/50 transition-all duration-300 text-lg"
         >
-          Let&apos;s Build Together
+          Let&apos;s Build Something Awesome
         </motion.button>
       </motion.div>
     </section>

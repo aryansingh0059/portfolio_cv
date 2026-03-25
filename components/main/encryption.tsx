@@ -134,7 +134,7 @@ export const Encryption = () => {
           className="text-center mb-16"
         >
           <motion.div
-            variants={slideInFromTop}
+            variants={slideInFromTop(0.2)}
             className="inline-flex items-center gap-3 py-3 px-6 bg-slate-800/40 backdrop-blur-sm rounded-2xl border border-cyan-500/30 mb-8"
           >
             <ShieldCheckIcon className="w-5 h-5 text-cyan-400" />

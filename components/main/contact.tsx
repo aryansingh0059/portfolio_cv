@@ -91,11 +91,54 @@ export const Contact = () => {
   };
 
   const socialLinks = [
-    { name: "GitHub", icon: "💻", url: "#", color: "hover:text-gray-300" },
-    { name: "LinkedIn", icon: "💼", url: "#", color: "hover:text-blue-400" },
-    { name: "Twitter", icon: "🐦", url: "#", color: "hover:text-sky-400" },
-    { name: "Dribbble", icon: "🎨", url: "#", color: "hover:text-pink-400" },
+    { name: "GitHub", icon: "💻", url: "https://github.com/AryanCodeWizard", color: "hover:text-gray-300" },
+    { name: "LinkedIn", icon: "💼", url: "https://linkedin.com", color: "hover:text-blue-400" },
+    { name: "Twitter", icon: "🐦", url: "https://twitter.com", color: "hover:text-sky-400" },
+    { name: "Email", icon: "📧", url: "mailto:contact.aryan0101@gmail.com", color: "hover:text-cyan-300" },
   ];
+
+  const contactItems = [
+    {
+      icon: EnvelopeIcon,
+      title: "Email",
+      value: "contact.aryan0101@gmail.com",
+      subtitle: "Fastest response",
+      href: "mailto:contact.aryan0101@gmail.com",
+      hoverBg: "rgba(6, 182, 212, 0.08)",
+      iconWrapClass: "bg-cyan-500/10",
+      iconClass: "text-cyan-400",
+    },
+    {
+      icon: PhoneIcon,
+      title: "Phone",
+      value: "+91 7667682319",
+      subtitle: "Mon-Fri, 9AM-6PM",
+      href: "tel:+917667682319",
+      hoverBg: "rgba(147, 51, 234, 0.08)",
+      iconWrapClass: "bg-purple-500/10",
+      iconClass: "text-purple-400",
+    },
+    {
+      icon: MapPinIcon,
+      title: "Location",
+      value: "Darbhanga, Bihar",
+      subtitle: "Available worldwide",
+      href: "https://maps.google.com/?q=Darbhanga,Bihar",
+      hoverBg: "rgba(6, 182, 212, 0.08)",
+      iconWrapClass: "bg-cyan-500/10",
+      iconClass: "text-cyan-400",
+    },
+    {
+      icon: ClockIcon,
+      title: "Response",
+      value: "< 24 Hours",
+      subtitle: "Usually within 3 hours",
+      href: undefined,
+      hoverBg: "rgba(147, 51, 234, 0.08)",
+      iconWrapClass: "bg-purple-500/10",
+      iconClass: "text-purple-400",
+    },
+  ] as const;
 
   return (
     <section
@@ -140,8 +183,8 @@ export const Contact = () => {
           </h2>
 
           <p className="text-sm sm:text-base md:text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed px-4">
-            I'm always excited to collaborate on innovative projects or discuss new ideas.  
-            Let's turn your vision into reality.
+            I&apos;m always excited to collaborate on innovative projects or discuss new ideas.  
+            Let&apos;s turn your vision into reality.
           </p>
         </motion.div>
 
@@ -166,63 +209,32 @@ export const Contact = () => {
             </motion.div>
 
             <div className="space-y-3 sm:space-y-4">
-              {[
-                {
-                  icon: EnvelopeIcon,
-                  title: "Email",
-                  value: "contact.aryan0101@gmail.com",
-                  subtitle: "Fastest response",
-                  color: "cyan",
-                  href: "mailto:contact.aryan0101@gmail.com",
-                },
-                {
-                  icon: PhoneIcon,
-                  title: "Phone",
-                  value: "+91 7667682319",
-                  subtitle: "Mon-Fri, 9AM-6PM",
-                  color: "purple",
-                },
-                {
-                  icon: MapPinIcon,
-                  title: "Location",
-                  value: "Darbhanga, Bihar",
-                  subtitle: "Available worldwide",
-                  color: "cyan",
-                },
-                {
-                  icon: ClockIcon,
-                  title: "Response",
-                  value: `< 24 Hours`,
-                  subtitle: "Usually within 3 hours",
-                  color: "purple",
-                },
-              ].map((contact) => (
-                <motion.a
-                  key={contact.title}
-                  href={contact.href}
-                  whileHover={!isMobile ? {
-                    x: 6,
-                    backgroundColor:
-                      contact.color === "cyan"
-                        ? "rgba(6, 182, 212, 0.08)"
-                        : "rgba(147, 51, 234, 0.08)",
-                  } : {}}
-                  whileTap={{ scale: 0.98 }}
-                  className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-slate-900/60 rounded-xl sm:rounded-2xl border border-slate-700/40 hover:border-cyan-400/30 transition-all duration-300 group cursor-pointer"
-                >
-                  <div
-                    className={`p-2 sm:p-3 rounded-lg sm:rounded-xl bg-${contact.color}-500/10 group-hover:scale-110 transition-transform duration-300`}
+              {contactItems.map((contact) => {
+                const ContactTag = contact.href ? motion.a : motion.div;
+                return (
+                  <ContactTag
+                    key={contact.title}
+                    {...(contact.href
+                      ? { href: contact.href, target: "_blank", rel: "noreferrer noopener" }
+                      : {})}
+                    whileHover={!isMobile ? { x: 6, backgroundColor: contact.hoverBg } : {}}
+                    whileTap={{ scale: 0.98 }}
+                    className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-slate-900/60 rounded-xl sm:rounded-2xl border border-slate-700/40 hover:border-cyan-400/30 transition-all duration-300 group cursor-pointer"
                   >
-                    <contact.icon className={`w-5 h-5 sm:w-6 sm:h-6 text-${contact.color}-400`} />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h4 className="text-white font-semibold text-sm sm:text-base truncate">{contact.title}</h4>
-                    <p className="text-gray-300 text-xs sm:text-sm truncate">{contact.value}</p>
-                    <p className="text-gray-400 text-xs hidden sm:block">{contact.subtitle}</p>
-                  </div>
-                  <LinkIcon className="w-3 h-3 sm:w-4 sm:h-4 text-gray-400 group-hover:text-cyan-400 transition-colors flex-shrink-0" />
-                </motion.a>
-              ))}
+                    <div className={`p-2 sm:p-3 rounded-lg sm:rounded-xl ${contact.iconWrapClass} group-hover:scale-110 transition-transform duration-300`}>
+                      <contact.icon className={`w-5 h-5 sm:w-6 sm:h-6 ${contact.iconClass}`} />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h4 className="text-white font-semibold text-sm sm:text-base truncate">{contact.title}</h4>
+                      <p className="text-gray-300 text-xs sm:text-sm truncate">{contact.value}</p>
+                      <p className="text-gray-400 text-xs hidden sm:block">{contact.subtitle}</p>
+                    </div>
+                    {contact.href ? (
+                      <LinkIcon className="w-3 h-3 sm:w-4 sm:h-4 text-gray-400 group-hover:text-cyan-400 transition-colors flex-shrink-0" />
+                    ) : null}
+                  </ContactTag>
+                );
+              })}
             </div>
 
             {/* Social Links */}
