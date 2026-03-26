@@ -348,12 +348,22 @@ export const NAV_LINKS = [
   { title: "Contact", link: "#contact" },
 ] as const;
 
-export const LINKS = {
-  sourceCode: "https://github.com/sanidhyy/space-portfolio",
-};
+export type ProjectStatus = "delivered" | "maintenance" | "progress";
 
+export interface Project {
+  title: string;
+  description: string;
+  image: string;
+  link: string;
+  github: string;
+  status: ProjectStatus;
+  technologies: string[];
+  categories: string[];
+  featured: boolean;
+  date: string;
+}
 
-export const PROJECTS = [
+export const PROJECTS: Project[] = [
   {
     title: "DocMatcher – Similar Document Matcher",
     description:
