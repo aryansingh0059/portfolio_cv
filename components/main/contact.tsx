@@ -10,7 +10,8 @@ import {
   PhoneIcon,
   UserCircleIcon,
 } from "@heroicons/react/24/outline";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import emailjs from "@emailjs/browser";
 
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -22,6 +23,7 @@ export const Contact = () => {
   });
 
   const [isMobile, setIsMobile] = useState(false);
+  const form = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -51,23 +53,39 @@ export const Contact = () => {
     setIsSubmitting(true);
     setErrorMessage("");
 
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "";
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "";
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "";
 
-      if (response.ok) {
+    if (!serviceId || !templateId || !publicKey) {
+      setErrorMessage("EmailJS is not configured properly.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      const result = await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          to_name: "Aryan Kumar", // Default recipient name
+        },
+        publicKey
+      );
+
+      if (result.text === "OK") {
         setIsSent(true);
         setFormData({ name: "", email: "", subject: "", message: "" });
         setTimeout(() => setIsSent(false), 4000);
       } else {
-        const data = await response.json();
-        setErrorMessage(data.error || 'Failed to send message');
+        setErrorMessage("Failed to send message. Please try again.");
       }
-    } catch (error) {
-      setErrorMessage('Network error. Please check your connection.');
+    } catch (error: any) {
+      setErrorMessage(error.text || "Failed to send message. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -91,19 +109,19 @@ export const Contact = () => {
   };
 
   const socialLinks = [
-    { name: "GitHub", icon: "💻", url: "https://github.com/AryanCodeWizard", color: "hover:text-gray-300" },
-    { name: "LinkedIn", icon: "💼", url: "https://linkedin.com", color: "hover:text-blue-400" },
-    { name: "Twitter", icon: "🐦", url: "https://twitter.com", color: "hover:text-sky-400" },
-    { name: "Email", icon: "📧", url: "mailto:contact.aryan0101@gmail.com", color: "hover:text-cyan-300" },
+    { name: "GitHub", icon: "💻", url: "https://github.com/aryansingh0059", color: "hover:text-gray-300" },
+    { name: "LinkedIn", icon: "💼", url: "https://www.linkedin.com/in/aryan-kumar1705/", color: "hover:text-blue-400" },
+    { name: "Twitter", icon: "🐦", url: "https://x.com/aryan30804", color: "hover:text-sky-400" },
+    { name: "Email", icon: "📧", url: "mailto:aryansinghclub1212@gmail.com", color: "hover:text-cyan-300" },
   ];
 
   const contactItems = [
     {
       icon: EnvelopeIcon,
       title: "Email",
-      value: "contact.aryan0101@gmail.com",
+      value: "aryansinghclub1212@gmail.com",
       subtitle: "Fastest response",
-      href: "mailto:contact.aryan0101@gmail.com",
+      href: "mailto:aryansinghclub1212@gmail.com",
       hoverBg: "rgba(6, 182, 212, 0.08)",
       iconWrapClass: "bg-cyan-500/10",
       iconClass: "text-cyan-400",
@@ -111,9 +129,9 @@ export const Contact = () => {
     {
       icon: PhoneIcon,
       title: "Phone",
-      value: "+91 7667682319",
+      value: "+91 7632849765",
       subtitle: "Mon-Fri, 9AM-6PM",
-      href: "tel:+917667682319",
+      href: "tel:+917632849765",
       hoverBg: "rgba(147, 51, 234, 0.08)",
       iconWrapClass: "bg-purple-500/10",
       iconClass: "text-purple-400",
@@ -121,9 +139,9 @@ export const Contact = () => {
     {
       icon: MapPinIcon,
       title: "Location",
-      value: "Darbhanga, Bihar",
+      value: "Buxar, Bihar",
       subtitle: "Available worldwide",
-      href: "https://maps.google.com/?q=Darbhanga,Bihar",
+      href: "https://maps.google.com/?q=Buxar,Bihar",
       hoverBg: "rgba(6, 182, 212, 0.08)",
       iconWrapClass: "bg-cyan-500/10",
       iconClass: "text-cyan-400",
@@ -201,7 +219,7 @@ export const Contact = () => {
               >
                 <UserCircleIcon className="w-10 h-10 sm:w-12 sm:h-12 text-white" />
               </motion.div>
-              <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">Aryan</h3>
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">Aryan Kumar</h3>
               <p className="text-cyan-400 font-semibold mb-2 sm:mb-3 text-sm sm:text-base">Fullstack Developer</p>
               <p className="text-gray-400 text-xs sm:text-sm px-2">
                 Turning ideas into impactful digital experiences

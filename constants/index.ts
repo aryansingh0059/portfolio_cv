@@ -90,7 +90,7 @@ export const SOCIALS = [
   {
     name: "Twitter",
     icon: RxTwitterLogo,
-    link: "https://twitter.com",
+    link: "https://x.com/aryan30804",
   },
 ] as const;
 
@@ -241,25 +241,25 @@ export const OTHER_SKILL = [
   },
   {
     skill_name: "Kubernetes",
-    image: "kubernetes.png", // Change from URL to local file
+    image: "kubernetes.svg",
     width: 60,
     height: 60,
   },
   {
     skill_name: "Postman",
-    image: "postman.png", // Change from URL to local file
+    image: "postman.svg",
     width: 60,
     height: 60,
   },
   {
     skill_name: "Git",
-    image: "git.png", // Change from URL to local file
+    image: "git.svg",
     width: 60,
     height: 60,
   },
   {
     skill_name: "Linux",
-    image: "linux.png", // Change from URL to local file
+    image: "linux.svg",
     width: 60,
     height: 60,
   },
@@ -277,7 +277,7 @@ export const FOOTER_DATA = [
       {
         name: "GitHub",
         icon: RxGithubLogo,
-        link: "https://github.com",
+        link: "https://github.com/aryansingh0059",
       },
       {
         name: "Discord",
@@ -297,12 +297,12 @@ export const FOOTER_DATA = [
       {
         name: "Twitter",
         icon: RxTwitterLogo,
-        link: "https://twitter.com",
+        link: "https://x.com/aryan30804",
       },
       {
         name: "Linkedin",
         icon: RxLinkedinLogo,
-        link: "https://linkedin.com",
+        link: "https://www.linkedin.com/in/aryan-kumar1705/",
       },
     ],
   },
@@ -322,7 +322,7 @@ export const FOOTER_DATA = [
       {
         name: "Contact Me",
         icon: null,
-        link: "mailto:contact@example.com",
+        link: "mailto:aryansinghclub1212@gmail.com",
       },
     ],
   },
@@ -354,128 +354,45 @@ export const LINKS = {
 
 
 export const PROJECTS = [
-
   {
-    title: "Edvora - WebApp",
+    title: "DocMatcher – Similar Document Matcher",
     description:
-      'Edvora is an innovative educational web platform designed to make learning more accessible, interactive, and personalized. It empowers students, teachers, and institutions with intuitive tools that streamline teaching, enhance engagement, and improve academic outcomes.',
-    image: "/projects/Edvora.png",
-    // image: "https://edvora-beryl.vercel.app/signup",
-    link: "https://edvora-beryl.vercel.app",
+      "A MERN-based semantic document template matching system that identifies and ranks similar documents using meaning-based similarity instead of keyword matching. Leverages NLP embeddings to understand document context and deliver accurate similarity scores.",
+    image: "/projects/DocMatcher.png",
+    link: "https://github.com/aryansingh0059/Similar-Doc-matcher",
+    github: "https://github.com/aryansingh0059/Similar-Doc-matcher",
     status: "delivered",
-    technologies: ["React", "JavaScript", "Tailwind CSS", "Framer Motion"],
-    categories: ["frontend", "fullstack","backend"],
+    technologies: ["MongoDB", "Express.js", "React", "Node.js", "NLP", "Python"],
+    categories: ["fullstack", "ai-ml"],
     featured: true,
-    date: "2024-01-15"
+    date: "2024-03-01"
   },
   {
-    title: "WillWings – Explore the World, Effortlessly",
+    title: "QuickCure – Premium Healthcare Dashboard",
     description:
-      'WillWings is a modern travel web platform designed to make trip planning smoother, smarter, and more enjoyable. It empowers travelers with intuitive tools that simplify discovering destinations, booking experiences, and managing journeys—all in one place.',
-    image: "/projects/WillWings.png",
-    link: "https://travel-planner123.netlify.app",
+      "A modern, high-performance healthcare platform with a premium Glassmorphism aesthetic. Seamlessly manage appointments for patients and doctors with real-time scheduling, status tracking, and an intuitive dashboard experience.",
+    image: "/projects/QuickCure.png",
+    link: "https://patient-appointment-management-blue.vercel.app/",
+    github: "https://github.com/aryansingh0059/Patient-Appointment-Management",
     status: "delivered",
-    technologies: ["React", "CSS3", "JavaScript", "GSAP"],
-    categories: ["frontend"],
-    featured: false,
-    date: "2023-11-20"
-  },
-  { 
-    title: "Universe - Portfolio Website",
-    description:
-      'Embark on a cosmic voyage with Universe, my space-themed portfolio website crafted to transport you into the depths of the unknown. This immersive digital experience blends futuristic design, celestial aesthetics, and seamless interactivity—inviting you to discover my work as if traveling through galaxies.',
-    image: "/projects/Portfolio.png",
-    link: "https://example.com",
-    status: "maintenance",
-    technologies: ["Three.js", "React", "WebGL", "Node.js"],
-    categories: ["frontend", "fullstack"],
+    technologies: ["React", "Node.js", "MongoDB", "Express.js", "Tailwind CSS"],
+    categories: ["fullstack", "frontend"],
     featured: true,
-    date: "2024-02-01"
+    date: "2024-02-15"
   },
   {
-    title: "E-Commerce Platform",
+    title: "CineVerse – Movie Ticket Booking System",
     description:
-      'A full-featured e-commerce platform with real-time inventory management, payment processing, and customer analytics. Built with scalability and performance in mind.',
-    image: "/projects/Edvora.png", // Use existing image as placeholder
-    link: "https://example.com",
+      "A premium movie ticket booking platform with real-time seat selection, TMDB API integration, and a sleek cinematic UI. Users can browse trending movies, view showtimes, and book seats with an interactive seat map.",
+    image: "/projects/CineVerse.png",
+    link: "https://movie-ticket-booking-red-theta.vercel.app/",
+    github: "https://github.com/aryansingh0059/Movie-Ticket-Booking",
     status: "delivered",
-    technologies: ["Next.js", "Stripe", "MongoDB", "Node.js"],
-    categories: ["fullstack", "enterprise"],
+    technologies: ["React", "Next.js", "Tailwind CSS", "TMDB API", "Node.js"],
+    categories: ["fullstack", "frontend"],
     featured: true,
-    date: "2023-12-10"
+    date: "2024-03-10"
   },
-  {
-    title: "Mobile Fitness App",
-    description:
-      'A cross-platform mobile application for fitness tracking, workout plans, and nutrition guidance with social features and progress analytics.',
-    image: "/projects/WillWings.png", // Use existing image as placeholder
-    link: "https://example.com",
-    status: "maintenance",
-    technologies: ["React Native", "Firebase", "Redux", "TypeScript"],
-    categories: ["mobile", "frontend"],
-    featured: false,
-    date: "2023-10-05"
-  },
-  {
-    title: "AI Content Generator",
-    description:
-      'An AI-powered content generation tool that helps creators write engaging copy, generate ideas, and optimize content for SEO using machine learning algorithms.',
-    image: "/projects/Portfolio.png", // Use existing image as placeholder
-    link: "https://example.com",
-    status: "delivered",
-    technologies: ["Python", "TensorFlow", "FastAPI", "React"],
-    categories: ["ai-ml", "fullstack"],
-    featured: true,
-    date: "2024-01-30"
-  },
-  {
-    title: "DevOps Automation Suite",
-    description:
-      'A comprehensive DevOps toolset for CI/CD pipeline automation, container orchestration, and infrastructure monitoring with real-time alerts.',
-    image: "/projects/Edvora.png", // Use existing image as placeholder
-    link: "https://example.com",
-    status: "delivered",
-    technologies: ["Docker", "Kubernetes", "AWS", "Terraform"],
-    categories: ["devops", "enterprise"],
-    featured: false,
-    date: "2023-09-15"
-  },
-  {
-    title: "Social Media Dashboard",
-    description:
-      'A real-time social media analytics dashboard that aggregates data from multiple platforms and provides insights through interactive visualizations.',
-    image: "/projects/WillWings.png", // Use existing image as placeholder
-    link: "https://example.com",
-    status: "maintenance",
-    technologies: ["Vue.js", "D3.js", "Express.js", "PostgreSQL"],
-    categories: ["frontend", "fullstack"],
-    featured: false,
-    date: "2023-08-22"
-  },
-  {
-    title: "Blockchain Wallet",
-    description:
-      'A secure cryptocurrency wallet with multi-chain support, NFT management, and decentralized exchange integration for seamless crypto transactions.',
-    image: "/projects/Portfolio.png", // Use existing image as placeholder
-    link: "https://example.com",
-    status: "progress",
-    technologies: ["Web3.js", "Solidity", "React", "Node.js"],
-    categories: ["fullstack", "blockchain"],
-    featured: true,
-    date: "2024-02-10"
-  },
-  {
-    title: "Healthcare Management System",
-    description:
-      'An enterprise healthcare platform for patient records management, appointment scheduling, and telemedicine features with HIPAA compliance.',
-    image: "/projects/Edvora.png", // Use existing image as placeholder
-    link: "https://example.com",
-    status: "delivered",
-    technologies: ["Angular", "Java", "Spring Boot", "MySQL"],
-    categories: ["enterprise", "fullstack"],
-    featured: true,
-    date: "2023-11-30"
-  }
 ] as const;
 
 

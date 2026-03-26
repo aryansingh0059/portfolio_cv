@@ -57,6 +57,7 @@ export const SkillDataProvider = ({
             alt={name}
             className="filter drop-shadow-lg"
             loading="lazy"
+            unoptimized={src.endsWith('.svg')}
           />
         </div>
 

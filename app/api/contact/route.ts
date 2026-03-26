@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
 
     // Send auto-reply to the user
     const { error: autoReplyError } = await resend.emails.send({
-      from: 'Aryan Raj <onboarding@resend.dev>',
+      from: 'Aryan Kumar <onboarding@resend.dev>',
       to: [email],
       subject: 'Thank you for reaching out! 🚀',
       html: `
@@ -124,7 +124,7 @@ export async function POST(request: NextRequest) {
               Best regards,
             </p>
             <p style="color: #06b6d4; margin: 0; font-size: 20px; font-weight: bold;">
-              Aryan Raj
+              Aryan Kumar
             </p>
             <p style="color: #64748b; margin: 5px 0 0 0; font-size: 14px;">
               Fullstack Developer | MERN Stack
