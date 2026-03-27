@@ -3,6 +3,7 @@ import { Encryption } from "@/components/main/encryption";
 import { Hero } from "@/components/main/hero";
 import { Projects } from "@/components/main/projects";
 import { Resume } from "@/components/main/resume";
+import { Certificates } from "@/components/main/certificates";
 import { Skills } from "@/components/main/skills";
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
         <Skills />
         <Projects />
         <Resume />
+        <Certificates />
         <Contact/>
         <Encryption />
         

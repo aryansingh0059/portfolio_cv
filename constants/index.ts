@@ -405,4 +405,32 @@ export const PROJECTS: Project[] = [
   },
 ] as const;
 
+export interface Certificate {
+  title: string;
+  issuer: string;
+  link: string;
+  date: string;
+}
+
+export const CERTIFICATES: Certificate[] = [
+  {
+    title: "Building AI Agents with MongoDB",
+    issuer: "MongoDB",
+    link: "https://www.credly.com/earner/earned/share/b9883e49-69d2-467e-a97d-56925112e0aa",
+    date: "June 2025",
+  },
+  {
+    title: "Fundamentals of Network Communication",
+    issuer: "University of Colorado System",
+    link: "https://www.coursera.org/account/accomplishments/verify/R5KVQP9V0O2K",
+    date: "2024",
+  },
+  {
+    title: "The Bits and Bytes of Computer Networking",
+    issuer: "Google",
+    link: "https://www.coursera.org/account/accomplishments/verify/HD7O6C4H2O40",
+    date: "2024",
+  },
+];
+
 
