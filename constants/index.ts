@@ -420,6 +420,18 @@ export const CERTIFICATES: Certificate[] = [
     date: "June 2025",
   },
   {
+    title: "MongoDB Query Optimization Techniques",
+    issuer: "MongoDB",
+    link: "https://www.credly.com/badges/3cdd1800-481d-413d-ab90-8aad2702bfb1",
+    date: "2025",
+  },
+  {
+    title: "Building AI-Powered Search with MongoDB Vector Search",
+    issuer: "MongoDB",
+    link: "https://www.credly.com/badges/37dcd302-64b1-4e2f-a802-e5a614a158c6",
+    date: "2025",
+  },
+  {
     title: "Fundamentals of Network Communication",
     issuer: "University of Colorado System",
     link: "https://www.coursera.org/account/accomplishments/verify/R5KVQP9V0O2K",
